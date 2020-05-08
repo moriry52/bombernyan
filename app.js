@@ -35,10 +35,12 @@ var bomber = io.of('/bomber').on('connection', function (socket) {
 			mode = value.substr(value.search(/[a-zA-Z]*$/));
 			if (mode == "start") {
 				myusername = code_username;
+				console.log ("start",myusername)
 			}
 			if (mode == "join") {
 				for (let i in data[value]) {
 					username[socket.id] = i;
+					console.log ("join",i)
 				}
 			}
 
@@ -49,8 +51,10 @@ var bomber = io.of('/bomber').on('connection', function (socket) {
 		if (mode != undefined) {
 			if (mode == "join") {
 				bomber.emit(battle_code + "join", { [username[socket.id]]: { users: 0 } })
+				console.log("join end",username,username[socket.id])
 			} else {
 				bomber.emit(myusername + "end", { died: true })
+				console.log("end",myusername)
 			}
 		}
 	})

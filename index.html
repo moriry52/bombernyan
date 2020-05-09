@@ -54,28 +54,15 @@
         }
 
 
-        .punch,.punch_icon {
-            background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAArlBMVEUAAAD9/f3////9/f3////////////////////39/f////9/f3////9/f3////////////////////////////////////////+/v7+/v77+/v8/Pz6+vr5+fn////39/f////////////+/v7////////////////////////////////////9/f38/Pz////8/Pz////////////////////////////+/v7///9Hklv5AAAAOXRSTlMAAv0L+fK0nzsYB0tGQBD15d7Uy7+8pJN+bjcyKyMfBe/ZuK6okIaBWC/r58bEqp1zZFlSiXh0Z2WofbqXAAABSklEQVQ4y5WR6ZKCMBCEMyByIyiiyOV638e617z/iy0hhiNI1e73gxqqOzPJNPkfoK3Vyaxbj/sS5gR6x/GbggwvfaXrYywZym1dc7FGAKJ+H2Ad6SGMn0rY5E1u6OumKq1sGer6pqn3dqB9qFsr44Zvof+VsImeyfRUEQbEcY9VA7bUq3i/auSK6o4iGPpkycsRNVjYMgS8XFLDu2iYO3be1Avzz7QyjNVB2cEguq0ZTp5NRA0JUkJIA6l4g2rsx6Flblx6hYIzUk427Ncjr2+CdeTvfe4hUdjvwjIIkHTS47NUvm57joyD749KGc9VXvEQ2/hydCktMu9bsXK0A30QZ3ZqBroFk15tX8v8UZsznMFX0TMiNbKdL7G07kayKCo3Iw0g+Zmonxro2+dab+Q1F2Qssg6DfmRZyqSLyM1DnQLpRg93Dvkbv/6jZh1PGQtHAAAAAElFTkSuQmCC");
-            background-size: 100% 100%;
-            position: absolute;
-            width: 50px;
-            height: 50px;
-        }
-
-
         /*
         block0 --- 平地
-        block1 - block99 --- アイテム
-        block100 - block 899 --- 通り抜け地面(平地と同じ扱い)
-        block900 --- hurryブロック白
-        block999 --- みそぼん通り道
+        block1 - block999 --- アイテム
         block1000 - block1999 ソフトブロック＋アイテム(100ごとで下2桁はアイテム番号)
         block2000 - block 2999 --- ハードブロック
         block3000 - block 3999 --- 貫通ソフトブロック＋アイテム(100ごとで下2桁はアイテム番号)
-        block4000 - block 4499 --- 貫通ハードブロック
-        block4500 - block 499 --- 爆弾落下ブロック
+        block4000 - block 4999 --- 貫通ハードブロック
         block5000 --- 爆弾
-        block6000 --- 通り抜けブロック屋根(平地と同じ扱いだが、他のキャラが下に隠れる)
+        block6000 --- 通り抜けブロック
         */
 
         .block0,
@@ -338,6 +325,11 @@
             box-shadow: 0px 0px 0px !important;
         }
 
+        .grey_btn:active {
+            transform: translateY(2px);
+            box-shadow: 0px 0px 0px;
+        }
+
         .btn:active {
             transform: translateY(2px);
             box-shadow: 0px 0px 0px;
@@ -462,29 +454,6 @@
             position: absolute;
         }
 
-        .bombkey::after {
-            content: "";
-            display: inline-block;
-            left: 27px;
-            top: 13px;
-            position: absolute;
-            width: 0px;
-            height: 0px;
-            border-radius: 50%;
-            border: 17px solid white;
-        }
-
-        .punchkey::after {
-            content: "";
-            display: inline-block;
-            left: 27px;
-            top: 13px;
-            position: absolute;
-            width: 32px;
-            height: 32px;
-            background-color: white;
-
-        }
 
         .arrow:active {
             transform: translateY(2px);
@@ -536,104 +505,141 @@
             text-shadow: 2px 2px 2px black;
         }
 
-        .bomb_icon {
-            background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADGSURBVChTjZErDsJAFEU7sIEGJKZLqMNiWAC7YBkobHeAwyBJ0Og6HIYEBY6PgxCScu4bmiDaGU5y+z6986adSf6hqqqVYseqABhzwslXETDPvwvCkzGlhIFzbqe61YyxTxijtTV+0RQ0RVtUogcSxdfioZGjvb1qZlgbe+hgrXZuKJV5ZmWcwvE4skFm24S5y/wm6fo6yEtHd/V5lLPMG59HKfWDmb4+gk7DrlwLRtZqRsaJGWto6GIW6IKeSKYl8hOTJPkAHDMZyVlk9lIAAAAASUVORK5CYII=");
+        .bomb_icon,
+        .bombkey::after {
+            background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAgCAMAAAA/gEgKAAAAkFBMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+WABnwAAAAL3RSTlMAEO/3/MNrya+gRiUY6+Xe2pGKgXhzb1ZPOyoUEQT589TPvbawqZyZlX5fPTkwDxgbfh0AAAC0SURBVCjPdY/XEoJQDAUPF0Epdulg7y3//3fCDFK8x33cTSYT6DyOESgLUQbzmZIrGKFIQsNQLOqfIivdvl/e/Pd0kUZ2OJGSc1cby5l8meUdraTDsPEj6eNR367MRcOpfCwEFygsFqZAIpQUCx5usHjYYcKDwoCHAcx/YcrDFiceRrB5CGBQb/qAw8IFgKF0P85Q4mp+HaNCu2/aqHF776s7GnynHT/46JIH+42YY2vl1eIDxjRV3G+xQ+wAAAAASUVORK5CYII=");
             background-size: 70%;
             background-repeat: no-repeat;
-            width:16px;
-            height:16px;
-            display:block;
-            position:absolute;
-            top:-1px;
-            left:0;
+            width: 16px;
+            height: 16px;
+            display: block;
+            position: absolute;
+            top: -1px;
+            left: 0;
         }
+
+        .bombkey::after {
+            content: "";
+            width: 50px;
+            height: 50px;
+            display: block;
+            position: absolute;
+            top: 5px;
+            left: 27px;
+        }
+
+        .punch,
+        .punch_icon,
+        .punchkey::after {
+            background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAArlBMVEUAAAD9/f3////9/f3////////////////////39/f////9/f3////9/f3////////////////////////////////////////+/v7+/v77+/v8/Pz6+vr5+fn////39/f////////////+/v7////////////////////////////////////9/f38/Pz////8/Pz////////////////////////////+/v7///9Hklv5AAAAOXRSTlMAAv0L+fK0nzsYB0tGQBD15d7Uy7+8pJN+bjcyKyMfBe/ZuK6okIaBWC/r58bEqp1zZFlSiXh0Z2WofbqXAAABSklEQVQ4y5WR6ZKCMBCEMyByIyiiyOV638e617z/iy0hhiNI1e73gxqqOzPJNPkfoK3Vyaxbj/sS5gR6x/GbggwvfaXrYywZym1dc7FGAKJ+H2Ad6SGMn0rY5E1u6OumKq1sGer6pqn3dqB9qFsr44Zvof+VsImeyfRUEQbEcY9VA7bUq3i/auSK6o4iGPpkycsRNVjYMgS8XFLDu2iYO3be1Avzz7QyjNVB2cEguq0ZTp5NRA0JUkJIA6l4g2rsx6Flblx6hYIzUk427Ncjr2+CdeTvfe4hUdjvwjIIkHTS47NUvm57joyD749KGc9VXvEQ2/hydCktMu9bsXK0A30QZ3ZqBroFk15tX8v8UZsznMFX0TMiNbKdL7G07kayKCo3Iw0g+Zmonxro2+dab+Q1F2Qssg6DfmRZyqSLyM1DnQLpRg93Dvkbv/6jZh1PGQtHAAAAAElFTkSuQmCC");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            position: absolute;
+            width: 50px;
+            height: 50px;
+        }
+
+        .punchkey::after {
+            content: "";
+            width: 50px;
+            height: 50px;
+            display: block;
+            position: absolute;
+            top: 5px;
+            left: 20px;
+        }
+
+        .punch_icon {
+            background-size: 90%;
+            background-repeat: no-repeat;
+            width: 16px;
+            height: 16px;
+            display: block;
+            position: absolute;
+            top: 1px;
+            left: 112px;
+        }
+
         .bomb_num {
-            width:16px;
-            height:16px;
-            display:block;
-            position:absolute;
-            color:white;
-            top:0;
-            left:16px;
-            font-size:15px;
+            width: 16px;
+            height: 16px;
+            display: block;
+            position: absolute;
+            color: white;
+            top: 0;
+            left: 16px;
+            font-size: 15px;
         }
 
         .fire_icon {
             background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHHSURBVDhPlZJLL0NhEIbPOSipIm5JaVwSRCVEY2/jD9hJRCLBxsZGxMrOhqXLxsYP8CP4Cy6NSkpUWrXRqksiglPPe/q1lJCY5OnMOzPfdM75jvWXua47A1NG/s/y+fwwhxOQJo6Y9A+zjS8zDjTCAUi6dsFG4clr+GLeABrHYFWhNKYBlfgYKBfmsPIZ/WAOegX2HZM4hX4O+cCGHPoSriAhyGVNzYfugzh8PgLPekbxjlD/+qiU4zjJQsntxFdAALRNE7UBYqu4gewY/FBJQ4qGQ2JtkSA+IqdhGqKeKHjmDeCfa3AhoM+uwmtNbXMOF5CFKlPT1iG2Uk9pg3WGBPFJ/DWNt8Qv8A5vipWjljY9regNYsth0ixMEKdJ3itHQzO+zdAur0OqwQPccGYcpnUdHUDOCtHUiw/ju/EN0APKNZDrUs3oEGde8R3F76AFt4CfgxzFE3ScWG8daetWetFDxPWwi97GZ0rXKKNhkrXWCPXWc2gNJvSev444wo0so/fUL/s+IAhR0LdQDd4A0Et95qC+gRFIoT0rGyBjgxgD/DS5yB38K3oefMSPbDBY6PzFGLAJSxyoNSltFiC3CFsmZcyyPgDjJP3kcu8NzQAAAABJRU5ErkJggg==");
             background-size: 95%;
-            width:16px;
-            height:16px;
-            display:block;
-            position:absolute;
-            top:0.5px;
-            left:32px;
+            width: 16px;
+            height: 16px;
+            display: block;
+            position: absolute;
+            top: 0.5px;
+            left: 32px;
         }
+
         .fire_num {
-            width:16px;
-            height:16px;
-            display:block;
-            position:absolute;
-            color:white;
-            top:0;
-            left:48px;
-            font-size:15px;
+            width: 16px;
+            height: 16px;
+            display: block;
+            position: absolute;
+            color: white;
+            top: 0;
+            left: 48px;
+            font-size: 15px;
         }
 
         .speed_icon {
             background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAF/SURBVDhPldPBK8NhHMfx/XZQhEZpsaIpB8kcHbRSyrKjf8E4kJLawcVFzUlu7g6S4qBcRGsOtKWEHIyy+AMcWC3J7/H+bL9fbew3+dSr7/M8+z3fPfs9zfIRY8wWJaRxVVKWZeWcsWfcBk+UMDZR0Bq5Q4YmpjJtEDWAMo/PKgfOI56pOQE1zjdGteYkz3zbGXtHDaC848VRQAp+57G6+flhK7qQZ+M6NYBn27Y7qN7hYfcEyg2SKKKEQ3QLjdSwJvWOF0Eee1hCE06R4H280mSUZlNoY60SJtUnUG6RhV2eGfOICaxhVQvkQXvdW9il9Gr8R3RbndBPKXKimNtggdL4Rf1OiQYb5RENzvDxTzva62egIx1hGi3owQrrCc2pQeoyFjVHO2aQhc/igWNqM8YYj3OsWcaDjjmMIA59kf50b0jiC2ld4zAbT6iXbB6g6hovNNdn0In0xjPoRx/0h9tHWL8/hnukEUAU18ggxL1HqDmcYwhB6J1dGWMmvwGtWF/OM8e/0AAAAABJRU5ErkJggg==");
             background-size: 90%;
             background-repeat: no-repeat;
-            width:16px;
-            height:16px;
-            display:block;
-            position:absolute;
-            top:1px;
-            left:64px;
+            width: 16px;
+            height: 16px;
+            display: block;
+            position: absolute;
+            top: 1px;
+            left: 64px;
         }
+
         .speed_num {
-            width:16px;
-            height:16px;
-            display:block;
-            position:absolute;
-            color:white;
-            top:0px;
-            left:80px;
-            font-size:15px;
+            width: 16px;
+            height: 16px;
+            display: block;
+            position: absolute;
+            color: white;
+            top: 0px;
+            left: 80px;
+            font-size: 15px;
         }
 
         .kick_icon {
             background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAECSURBVDhPhZCxagJBFEV3LVIp+AUp0sZChYBVKqtUQnobfyABa/FXrFKlUghp8gURg1gKgWBjIVZJu543c92sO7t64O6bd9+d2d2JikiSZIBitYVUVPPU4jhOtC4k2MibHihz312AcBuN0QKtUUejcgjdoT3K8q1xOYQ+fDbgWZEAZlf2+HOxkFflTsC/RXO7nK23An5UU9jQpMzQjTUjlMf+ueXSgv5evrE7mkPfO5ao5waCvouyF7jXyIPxhKboBT1mvPytn/4Gxtb7KV/o1y9T7JC+tngwPt2oHDuoofg/mNdoY4kC3lBd0RAbondLZrDPqypyHoJ2KSttmsgWUXQATtCKZUpHBCAAAAAASUVORK5CYII=");
             background-size: 90%;
             background-repeat: no-repeat;
-            width:16px;
-            height:16px;
-            display:block;
-            position:absolute;
-            top:0;
-            left:96px;
+            width: 16px;
+            height: 16px;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 96px;
         }
 
-        .punch_icon {
-            background-size: 90%;
-            background-repeat: no-repeat;
-            width:16px;
-            height:16px;
-            display:block;
-            position:absolute;
-            top:1px;
-            left:112px;
-        }
+
 
         .powerglove_icon {
             background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAYAAAAiYZ4HAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEKSURBVDhPhZEvT0JRGIfvHIEgG24Gihsbn8HGhk1tBD6AgVlNjM1kIxoMGOyOAkEYgYCbjeInMBkNBgNjhOvzO/d3ubrdO57t2XvOe973/Lk3Sonj+BifsI7v2PNSPhRcopjgHLd44uUMkof4hh1cozhzfHBZBskSqlA73qC4ww1+Y9mlgQMs4djxCF/xFgdYxS5Nz7gKzd5FV/hB0Xd8cVxgOr5QwywZxy3HpeNfdMUQ1XCajEOhjs4j3WTIFcPDH5P5XvS20FDBz5Aq5gtroUEw0dXSh+cxcmkGySbqqxXRdmkGyQYWXW/qsv+wcJ6s79Cp16ifmw+LH6oE/ae608VQdI9Xnpoo+gV91uFbKql6qQAAAABJRU5ErkJggg==");
             background-size: 75%;
             background-repeat: no-repeat;
-            width:16px;
-            height:16px;
-            display:block;
-            position:absolute;
-            top:1px;
-            left:128px;
+            width: 16px;
+            height: 16px;
+            display: block;
+            position: absolute;
+            top: 1px;
+            left: 128px;
         }
         -->
     </style>
@@ -659,7 +665,6 @@
     </div>
 
     <div id="whole">
-
         <!-- ～～～～～～～～～～　フィールド　～～～～～～～～～～-->
         <div id="field_layer" style="position:absolute;top:0;left:0;display:none;width:100%;height:100%;z-index: 1;">
         </div>
@@ -684,8 +689,8 @@
         <div id="touch_area" style="position:absolute;height:100%;width:100%;display:block;z-index:3;"></div>
 
         <!-- ～～～～～～～～～～　コントローラーレイヤー　～～～～～～～～～～-->
-        <div id="Controller"
-            style="position: absolute;bottom:0;left:0;width:400px;height:124px;display:block;z-index: 4;">
+        <div id="controller"
+            style="position: absolute;bottom:0;left:0;width:400px;height:124px;display:none;z-index: 4;">
             <div id="left_key" class="arrow Left" style="position: absolute;display:inline-block;left:0;bottom:32px;">
             </div>
             <div id="right_key" class="arrow Right"
@@ -700,28 +705,32 @@
                 style="position: absolute;display: inline-block;right:20px;bottom:0px;width:90px;display:none;">
             </div>
         </div>
-        <!-- ～～～～～～～～～～　コントローラー消去ボタン　～～～～～～～～～～-->
-        <div class="grey_btn" id="controller_nondisplay" style="position:absolute;left:175px;bottom:0px;z-index:4">
-            Controller on/off</div>
+
+        <!-- ～～～～～～～～～～　コントローラー変更ボタン　～～～～～～～～～～-->
+        <div class="grey_btn" id="controller_change" style="position:absolute;left:210px;bottom:0px;z-index:4"></div>
+        <!-- ～～～～～～～～～～　デバッグボタン　～～～～～～～～～～-->
+        <div class="grey_btn" id="debug_button" style="position:absolute;left:0px;top:0px;z-index:4">
+            Debug</div>
 
         <!-- ～～～～～～～～～～　スライドコントローラー　～～～～～～～～～～-->
-        <div style="position:absolute;width:100%;height:100%;z-index:2;">
+        <div id="slide_controller" style="position:absolute;width:100%;height:100%;display:block;z-index:2;">
             <div id="slidepadback"
-                style="position:absolute;display:block;left:30px;bottom:140px;width:100px;height:100px;border-radius:50%;border:2px solid white;opacity:0.3;">
+                style="position:absolute;display:block;left:30px;bottom:50px;width:100px;height:100px;border-radius:50%;border:2px solid white;opacity:0.3;">
             </div>
             <div id="slidepad"
-                style="position:absolute;display:block;left:57px;bottom:167px;width:0px;height:0px;border-radius:50%;border:25px solid white;opacity:0.3;">
+                style="position:absolute;display:block;left:57px;bottom:77px;width:0px;height:0px;border-radius:50%;border:25px solid white;opacity:0.3;">
             </div>
         </div>
+
         <!-- ～～～～～～～～～～　ボムボタン　～～～～～～～～～～-->
         <div id="bomb_button"
-            style="position:absolute;left:300px;bottom:150px;width:80px;height:80px;border-radius:50%;border:2px solid white;opacity:0.5;z-index:4;">
+            style="position:absolute;left:300px;bottom:60px;width:80px;height:80px;border-radius:50%;border:2px solid white;opacity:0.5;z-index:4;">
             <div class="bomb_button" style="left:20px;top:20px;"></div>
         </div>
 
         <!-- ～～～～～～～～～～　パンチボタン　～～～～～～～～～～-->
         <div id="punch_button"
-            style="position:absolute;left:215px;bottom:150px;width:80px;height:80px;border-radius:50%;border:2px solid white;opacity:0.5;display:none;z-index:4;">
+            style="position:absolute;left:215px;bottom:60px;width:80px;height:80px;border-radius:50%;border:2px solid white;opacity:0.5;display:none;z-index:4;">
             <div class="punch" style="left:15px;top:15px;"></div>
         </div>
 
@@ -734,7 +743,7 @@
 
         <!-- ～～～～～～～～～～　フェイドレイヤー2　～～～～～～～～～～-->
         <div id="fade_layer2"
-            style="position:absolute;width:100%;height:100%;background-color:black;opacity: 0.5;display: none;z-index:8;">
+            style="position:absolute;width:100%;height:100%;background-color:black;opacity: 0.5;display:none;z-index:8;">
         </div>
 
         <!-- ～～～～～～～～～～　ダイアログレイヤー　～～～～～～～～～～-->
@@ -859,7 +868,7 @@
             <div id="pause" class="dialog" style="left:50px;top:60px;width:300px;height:350px">
                 <br>
                 <div style="font-size:35px;font-weight:bold;">Pause !!</div><br>
-                <div class="btn" id="ControllerSwitch">&nbsp;コントローラー&nbsp;<br>&nbsp;&nbsp;on/off&nbsp;</div>
+                <div class="btn" id="controllerSwitch">&nbsp;コントローラー&nbsp;<br>&nbsp;&nbsp;on/off&nbsp;</div>
                 <br><br><br><br>
                 <div class="btn" id="TouchSwitch">&nbsp;タッチ操作&nbsp;<br>&nbsp;&nbsp;on/off&nbsp;</div>
                 <br><br><br><br>
@@ -871,7 +880,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
 
     <script>
-        var socket = io("/bomber");
+        var socket = io("https://bombernyan.unubo.app/bomber");
         var debug_F = false;
 
         stage_roll = {
@@ -1065,7 +1074,8 @@
         button_set("roll_confirm", function () { drumroll.confirm() });
         button_set("roll_cancel", function () { drumroll.cancel() });
         button_set("end", function () { location.reload() });
-        button_set("controller_nondisplay", function () { controller_nondisplay() });
+        button_set("controller_change", function () { controller_display = (controller_display == "block" ? "none" : "block"); controller_change(controller_display == "block") });
+        button_set("debug_button", function () { console.log("debug"); debug_F = (debug_F ? false : true); Field.refresh_field() });
 
         active_button_set("left_key", function () { keyboard(37) }, function () { keyboardup(37) })
         active_button_set("right_key", function () { keyboard(39) }, function () { keyboardup(39) })
@@ -1076,27 +1086,6 @@
         active_button_set("punch_key", function () { keyboard(78) }, function () { keyboardup(78) });
         active_button_set("punch_button", function () { keyboard(78) }, function () { keyboardup(78) });
 
-
-        function controller_nondisplay() {
-            let display = document.getElementById("Controller").style.display;
-            if (display == "block") {
-                document.getElementById("Controller").style.display = "none";
-                controller_display = "none";
-                localStorage.setItem(game_name + "controllerdisplay", controller_display);
-                punchbutton_adjust_y = 90;
-
-            } else {
-                document.getElementById("Controller").style.display = "block";
-                controller_display = "block";
-                localStorage.setItem(game_name + "controllerdisplay", controller_display);
-                punchbutton_adjust_y = 0;
-            }
-            document.getElementById("slidepadback").style.bottom = (140 - punchbutton_adjust_y) + "px";
-            document.getElementById("slidepad").style.bottom = (167 - punchbutton_adjust_y) + "px";
-            document.getElementById("bomb_button").style.bottom = (150 - punchbutton_adjust_y) + "px";
-            document.getElementById("punch_button").style.bottom = (150 - punchbutton_adjust_y) + "px";
-
-        }
 
         function insert_chara(id, characters) {
             for (let i = 0; i < characters.length; i++) {
@@ -1263,7 +1252,7 @@
             this.draw_block(x, y, block);
         }
 
-        field.prototype.set_hurryblock = function (time) {
+        field.prototype.set_hurryblock = function (time, reverse_F) {
             let hurryblock_start = time * 1000;
             let width = Field.field_size_x - 6;
             let height = Field.field_size_y - 6;
@@ -1302,6 +1291,10 @@
                 this.hurryblocks_time_ID.push(setTimeout(function () {
                     document.getElementById("hurry_layer").style.display = "none";
                 }, hurryblock_start + i * 1000 + 500))
+            }
+
+            if (reverse_F) {
+                this.hurryblocks.reverse();
             }
             for (let i = 0; i < this.hurryblocks.length; i++) {
                 this.hurryblocks_time_ID.push(setTimeout(function () {
@@ -1347,14 +1340,12 @@
                     document.getElementById(this.field_name + String(X + this.field_size_x * Y)).style.left = X * this.block_size + "px";
                     document.getElementById(this.field_name + String(X + this.field_size_x * Y)).style.top = Y * this.block_size + "px";
                     document.getElementById(this.field_name + String(X + this.field_size_x * Y)).className = "block" + String(block_number);
-                    if (debug_F) {
-                        if (this.block_size > 10) {
-                            document.getElementById(this.field_name + String(X + this.field_size_x * Y)).style.fontSize = "10px";
-                            document.getElementById(this.field_name + String(X + this.field_size_x * Y)).style.color = "white"
-                            document.getElementById(this.field_name + String(X + this.field_size_x * Y)).innerHTML = String(block_number)
-                        } else {
-                            document.getElementById(this.field_name + String(X + this.field_size_x * Y)).innerHTML = "";
-                        }
+                    if (this.block_size > 10 && debug_F) {
+                        document.getElementById(this.field_name + String(X + this.field_size_x * Y)).style.fontSize = "10px";
+                        document.getElementById(this.field_name + String(X + this.field_size_x * Y)).style.color = "white"
+                        document.getElementById(this.field_name + String(X + this.field_size_x * Y)).innerHTML = String(block_number)
+                    } else {
+                        document.getElementById(this.field_name + String(X + this.field_size_x * Y)).innerHTML = "";
                     }
 
                 } else if (block_number >= 1000 && block_number < 2000) {  // --- ソフトブロック
@@ -1402,16 +1393,20 @@
                     document.getElementById(this.field_name + String(X + this.field_size_x * Y)).className = "block" + String(block_number);
                     document.getElementById(this.field_name + String(X + this.field_size_x * Y)).innerHTML = "";
 
-                } else if (block_number >= 5000 && block_number < 6000 && debug_F) {  // --- 爆弾
-                    document.getElementById(this.field_name + String(X + this.field_size_x * Y)).style.zIndex = "0";
-                    document.getElementById(this.field_name + String(X + this.field_size_x * Y)).style.width = this.block_size + "px";
-                    document.getElementById(this.field_name + String(X + this.field_size_x * Y)).style.height = this.block_size + "px";
-                    document.getElementById(this.field_name + String(X + this.field_size_x * Y)).style.left = X * this.block_size + "px";
-                    document.getElementById(this.field_name + String(X + this.field_size_x * Y)).style.top = Y * this.block_size + "px";
-                    document.getElementById(this.field_name + String(X + this.field_size_x * Y)).className = "block5000";
-                    document.getElementById(this.field_name + String(X + this.field_size_x * Y)).style.fontSize = "10px";
-                    document.getElementById(this.field_name + String(X + this.field_size_x * Y)).style.color = "white";
-                    document.getElementById(this.field_name + String(X + this.field_size_x * Y)).innerHTML = String(block_number);
+                } else if (block_number >= 5000 && block_number < 6000) {  // --- 爆弾
+                    if (debug_F) {
+                        document.getElementById(this.field_name + String(X + this.field_size_x * Y)).style.zIndex = "0";
+                        document.getElementById(this.field_name + String(X + this.field_size_x * Y)).style.width = this.block_size + "px";
+                        document.getElementById(this.field_name + String(X + this.field_size_x * Y)).style.height = this.block_size + "px";
+                        document.getElementById(this.field_name + String(X + this.field_size_x * Y)).style.left = X * this.block_size + "px";
+                        document.getElementById(this.field_name + String(X + this.field_size_x * Y)).style.top = Y * this.block_size + "px";
+                        document.getElementById(this.field_name + String(X + this.field_size_x * Y)).className = "block5000";
+                        document.getElementById(this.field_name + String(X + this.field_size_x * Y)).style.fontSize = "10px";
+                        document.getElementById(this.field_name + String(X + this.field_size_x * Y)).style.color = "white";
+                        document.getElementById(this.field_name + String(X + this.field_size_x * Y)).innerHTML = String(block_number);
+                    } else {
+                        document.getElementById(this.field_name + String(X + this.field_size_x * Y)).innerHTML = ""
+                    }
 
                 } else if (block_number >= 6000 && block_number < 7000) {  // --- 通り抜けブロック(土管など)
                     let field_tag = '<div id="' + this.field_name + "thru" + String(X + Y * this.field_size_x) + '" style="position:absolute;"></div>';
@@ -1425,16 +1420,20 @@
                     document.getElementById(this.field_name + String(X + this.field_size_x * Y)).innerHTML = "";
                     this.field_array[Y][X] = 0;
 
-                } else if (block_number >= 10000 && block_number < 11000 && debug_F) {  // --- 爆風
-                    document.getElementById(this.field_name + String(X + this.field_size_x * Y)).style.zIndex = "0";
-                    document.getElementById(this.field_name + String(X + this.field_size_x * Y)).style.left = X * this.block_size + "px";
-                    document.getElementById(this.field_name + String(X + this.field_size_x * Y)).style.top = Y * this.block_size + "px";
-                    document.getElementById(this.field_name + String(X + this.field_size_x * Y)).className = "block5000";
-                    document.getElementById(this.field_name + String(X + this.field_size_x * Y)).innerHTML = String(block_number);
-                    document.getElementById(this.field_name + String(X + this.field_size_x * Y)).style.color = "white";
-                    document.getElementById(this.field_name + String(X + this.field_size_x * Y)).style.fontSize = "10px";
-                    document.getElementById(this.field_name + String(X + this.field_size_x * Y)).style.width = this.block_size + "px";
-                    document.getElementById(this.field_name + String(X + this.field_size_x * Y)).style.height = this.block_size + "px";
+                } else if (block_number >= 10000 && block_number < 11000) {  // --- 爆風
+                    if (debug_F) {
+                        document.getElementById(this.field_name + String(X + this.field_size_x * Y)).style.zIndex = "0";
+                        document.getElementById(this.field_name + String(X + this.field_size_x * Y)).style.left = X * this.block_size + "px";
+                        document.getElementById(this.field_name + String(X + this.field_size_x * Y)).style.top = Y * this.block_size + "px";
+                        document.getElementById(this.field_name + String(X + this.field_size_x * Y)).className = "block5000";
+                        document.getElementById(this.field_name + String(X + this.field_size_x * Y)).innerHTML = String(block_number);
+                        document.getElementById(this.field_name + String(X + this.field_size_x * Y)).style.color = "white";
+                        document.getElementById(this.field_name + String(X + this.field_size_x * Y)).style.fontSize = "10px";
+                        document.getElementById(this.field_name + String(X + this.field_size_x * Y)).style.width = this.block_size + "px";
+                        document.getElementById(this.field_name + String(X + this.field_size_x * Y)).style.height = this.block_size + "px";
+                    } else {
+                        document.getElementById(this.field_name + String(X + this.field_size_x * Y)).innerHTML = "";
+                    }
                 }
             }
         }
@@ -1873,9 +1872,9 @@
         }
 
         bomb.prototype.cal_position = function (x, y, ox, oy) {
-            let x1,y1;
+            let x1, y1;
             if (this.ghost_F) {
-                x1 = (x + ox )
+                x1 = (x + ox)
             } else {
                 x1 = (x + ox + this.field.block_size * (this.field.field_size_x - 6)) % (this.field.block_size * (this.field.field_size_x - 4)) + this.field.block_size * 2;
             }
@@ -1919,7 +1918,7 @@
             let ox = [0, 1, 0, -1];
             let oy = [-1, 0, 1, 0];
             this.bursts = [];
-            if (this.field.get_block(this.position_x, this.position_y) < 999) {
+            if (this.field.get_block(this.position_x, this.position_y) == 0) {
                 this.bursts = [[...this.field.conv_xy(this.position_x, this.position_y), this.field.get_block(this.position_x, this.position_y)]];
                 this.field.put_array(this.bursts[0][0], this.bursts[0][1], this.bomb_id + 10000)
             }
@@ -1973,7 +1972,9 @@
             setTimeout(function () {
                 this.player_collision();
                 this.bursts.forEach(value => {
-                    this.field.put_array(value[0], value[1], value[2])
+                    if (this.field.field_array[value[1]][value[0]] >= 10000) {
+                        this.field.put_array(value[0], value[1], value[2])
+                    }
                 })
                 this.field.field_array.forEach((value0, y) => {
                     value0.forEach((value1, x) => {
@@ -2342,10 +2343,7 @@
                     this.sprite.move_to(this.position_x, this.position_y)
                     document.getElementById("playername" + this.player_num).style.left = String(this.position_x - this.display_size / 2) + "px";
                     document.getElementById("playername" + this.player_num).style.top = String(this.position_y - this.display_size * 1.7) + "px";
-                    if (this.punch_F) {
-                        document.getElementById("punch_button").style.display = "block";
-                        document.getElementById("punch_key").style.display = "block";
-                    }
+                    controller_change(controller_display == "block")
                 } else {
                     this.ghost(x, y)
                 }
@@ -2425,34 +2423,35 @@
                     break;
                 case 5:
                     this.punch_F = true;
-                    document.getElementById("punch_button").style.display = "block";
-                    document.getElementById("punch_key").style.display = "block";
+                    controller_change(controller_display == "block")
                     break;
                 case 6:
                     this.powerglove_F = true;
                     break;
             }
-            this.item_display ();
+            this.item_display();
         }
         player.prototype.item_display = function () {
-            document.getElementById("icon_layer").style.display = "block";
-            document.getElementById("bomb_num").innerHTML = String(this.bomb_max);
-            document.getElementById("fire_num").innerHTML = String(this.burst_distance);
-            document.getElementById("speed_num").innerHTML = String(this.move_speed-this.initial_status.move_speed);
-            if (this.kick_F) {
-                document.getElementById("kick_icon").style.display ="block";
-            } else {
-                document.getElementById("kick_icon").style.display ="none";
-            }
-            if (this.punch_F) {
-                document.getElementById("punch_icon").style.display ="block";
-            } else {
-                document.getElementById("punch_icon").style.display ="none";
-            }
-            if (this.powerglove_F) {
-                document.getElementById("powerglove_icon").style.display ="block";
-            } else {
-                document.getElementById("powerglove_icon").style.display ="none";
+            if (this.player_num == 0) {
+                document.getElementById("icon_layer").style.display = "block";
+                document.getElementById("bomb_num").innerHTML = String(this.bomb_max);
+                document.getElementById("fire_num").innerHTML = String(this.burst_distance);
+                document.getElementById("speed_num").innerHTML = String(this.move_speed - this.initial_status.move_speed);
+                if (this.kick_F) {
+                    document.getElementById("kick_icon").style.display = "block";
+                } else {
+                    document.getElementById("kick_icon").style.display = "none";
+                }
+                if (this.punch_F) {
+                    document.getElementById("punch_icon").style.display = "block";
+                } else {
+                    document.getElementById("punch_icon").style.display = "none";
+                }
+                if (this.powerglove_F) {
+                    document.getElementById("powerglove_icon").style.display = "block";
+                } else {
+                    document.getElementById("powerglove_icon").style.display = "none";
+                }
             }
         }
 
@@ -2496,7 +2495,6 @@
 
         var spacetime = 1000;
         var spacetime_ID = [];
-        var punchbutton_adjust_y = 0;
 
         var Field;
         var stage_order = [];
@@ -2534,7 +2532,8 @@
             initial_status: { move_speed: 4, bomb_max: 1, burst_distance: 1, kick_F: false, punch_F: false, powerglove_F: false, powerglove_power: 5 },
             ghost_status: { move_speed: 6, bomb_max: 1, burst_distance: 2, powerglove_F: false, powerglove_power: 4 },
             initial_position: [[3, 3], [13, 15], [13, 3], [3, 15]],
-            ghost_position: [[1, 1], [15, 17], [15, 1], [1, 17]]
+            ghost_position: [[1, 1], [15, 17], [15, 1], [1, 17]],
+            hurryblock_reverse: false
         }
 
         field_data[1] = {
@@ -2569,7 +2568,8 @@
             initial_status: { move_speed: 4, bomb_max: 1, burst_distance: 2, kick_F: false, punch_F: false, powerglove_F: false, powerglove_power: 5 },
             ghost_status: { move_speed: 6, bomb_max: 1, burst_distance: 2, powerglove_F: false, powerglove_power: 4 },
             initial_position: [[3, 3], [13, 15], [13, 3], [3, 15]],
-            ghost_position: [[1, 1], [15, 17], [15, 1], [1, 17]]
+            ghost_position: [[1, 1], [15, 17], [15, 1], [1, 17]],
+            hurryblock_reverse: false
         }
         field_data[2] = {
             title: "ギンギンパワー",
@@ -2603,14 +2603,15 @@
             initial_status: { move_speed: 6, bomb_max: 6, burst_distance: 8, kick_F: true, punch_F: true, powerglove_F: true, powerglove_power: 5 },
             ghost_status: { move_speed: 6, bomb_max: 1, burst_distance: 2, powerglove_F: false, powerglove_power: 4 },
             initial_position: [[3, 3], [13, 15], [13, 3], [3, 15]],
-            ghost_position: [[1, 1], [15, 17], [15, 1], [1, 17]]
+            ghost_position: [[1, 1], [15, 17], [15, 1], [1, 17]],
+            hurryblock_reverse: false
         }
         field_data[3] = {
             title: "かくれんぼ",
             field_array: [[2006, 2006, 2006, 2006, 2006, 2006, 2006, 2006, 2006, 2006, 2006, 2006, 2006, 2006, 2006, 2006, 2006],
             [2006, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 2006],
             [2006, 999, 2006, 2006, 2006, 2006, 2006, 2006, 2006, 2006, 2006, 2006, 2006, 2006, 2006, 999, 2006],
-            [2006, 999, 2006, 100, 100, 0, 0, 0, 6003, 6005, 6002, 0, 0, 100, 2006, 999, 2006],
+            [2006, 999, 2006, 100, 100, 0, 0, 0, 6003, 6005, 6002, 0, 100, 100, 2006, 999, 2006],
             [2006, 999, 2006, 100, 2005, 0, 2005, 0, 2005, 6001, 2005, 0, 2005, 100, 2006, 999, 2006],
             [2006, 999, 2006, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100, 2006, 999, 2006],
             [2006, 999, 2006, 6000, 2005, 0, 2005, 0, 2005, 0, 2005, 0, 2005, 0, 2006, 999, 2006],
@@ -2637,7 +2638,8 @@
             initial_status: { move_speed: 4, bomb_max: 1, burst_distance: 2, kick_F: false, punch_F: false, powerglove_F: false, powerglove_power: 5 },
             ghost_status: { move_speed: 6, bomb_max: 1, burst_distance: 2, powerglove_F: false, powerglove_power: 4 },
             initial_position: [[3, 3], [13, 15], [13, 3], [3, 15]],
-            ghost_position: [[1, 1], [15, 17], [15, 1], [1, 17]]
+            ghost_position: [[1, 1], [15, 17], [15, 1], [1, 17]],
+            hurryblock_reverse: false
         }
         field_data[4] = {
             title: "がけっぷち",
@@ -2671,7 +2673,8 @@
             initial_status: { move_speed: 4, bomb_max: 1, burst_distance: 1, kick_F: false, punch_F: false, powerglove_F: false, powerglove_power: 5 },
             ghost_status: { move_speed: 6, bomb_max: 1, burst_distance: 2, powerglove_F: false, powerglove_power: 5 },
             initial_position: [[3, 3], [13, 15], [13, 3], [3, 15]],
-            ghost_position: [[1, 1], [15, 17], [15, 1], [1, 17]]
+            ghost_position: [[1, 1], [15, 17], [15, 1], [1, 17]],
+            hurryblock_reverse: false
         }
         field_data[5] = {
             title: "ばくだんほうりなげ",
@@ -2705,7 +2708,8 @@
             initial_status: { move_speed: 3, bomb_max: 3, burst_distance: 3, kick_F: true, punch_F: true, powerglove_F: true, powerglove_power: 5 },
             ghost_status: { move_speed: 6, bomb_max: 1, burst_distance: 2, powerglove_F: false, powerglove_power: 4 },
             initial_position: [[3, 3], [13, 15], [13, 3], [3, 15]],
-            ghost_position: [[1, 1], [15, 17], [15, 1], [1, 17]]
+            ghost_position: [[1, 1], [15, 17], [15, 1], [1, 17]],
+            hurryblock_reverse: true
         }
 
         // 1: 爆風, 2: ボム, 3: スピードアップ, 4: キック, 5: パンチ, 6: パワーグローブ
@@ -2725,11 +2729,10 @@
 
         var controller_display = localStorage.getItem(game_name + "controllerdisplay");
         if (controller_display == null) {
-            controller_display = "block";
+            controller_display = "none";
         }
-        if (controller_display == "none") {
-            controller_nondisplay();
-        }
+        controller_change(controller_display == "block");
+
         document.getElementById("fade_layer").style.display = "block";
         document.getElementById("title").style.display = "block";
 
@@ -2810,11 +2813,10 @@
             }
 
             if (player_array[0].punch_F) {
-                document.getElementById("punch_button").style.display = "block";
-                document.getElementById("punch_key").style.display = "block";
+                controller_change(controller_display == "block")
             }
             if (singlemode_F == false) {
-                Field.set_hurryblock(57);
+                Field.set_hurryblock(57, field_data[stage_num].hurryblock_reverse);
             }
         }
 
@@ -3124,6 +3126,33 @@
 
         }
 
+        function controller_change(controller_F) {
+            if (controller_F) {
+                document.getElementById("controller").style.display = "block";
+                document.getElementById("slide_controller").style.display = "none";
+                document.getElementById("bomb_button").style.display = "none";
+                document.getElementById("controller_change").innerHTML ="Slide pad";
+                if (player_array[0] != undefined) {
+                    if (player_array[0].punch_F) {
+                        document.getElementById("punch_button").style.display = "none";
+                        document.getElementById("punch_key").style.display = "block";
+                    }
+                }
+            } else {
+                document.getElementById("controller").style.display = "none";
+                document.getElementById("slide_controller").style.display = "block"
+                document.getElementById("bomb_button").style.display = "block";
+                document.getElementById("controller_change").innerHTML ="Controller";
+                if (player_array[0] != undefined) {
+                    if (player_array[0].punch_F) {
+                        document.getElementById("punch_button").style.display = "block";
+                        document.getElementById("punch_key").style.display = "none";
+                    }
+                }
+            }
+            localStorage.setItem(game_name + "controllerdisplay", controller_display);
+        }
+
         //～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～
         //～～～～～～～～～　　　　キーボード入力　　　　～～～～～～～～～
         //～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～
@@ -3342,10 +3371,10 @@
             key_input[0]["down"] = false;
             document.getElementById("slidepadback").style.left = "30px"
             document.getElementById("slidepadback").style.top = ""
-            document.getElementById("slidepadback").style.bottom = (140 - punchbutton_adjust_y) + "px"
+            document.getElementById("slidepadback").style.bottom = "50px"
             document.getElementById("slidepad").style.left = "57px"
             document.getElementById("slidepad").style.top = ""
-            document.getElementById("slidepad").style.bottom = (167 - punchbutton_adjust_y) + "px"
+            document.getElementById("slidepad").style.bottom = "77px"
             key_unpress(0);
 
         }, false);

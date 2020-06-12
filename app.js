@@ -3,7 +3,7 @@ var io = require('socket.io')(app);
 var fs = require('fs');
 
 // HTTP サーバのポートを指定する
-//port = process.env.PORT || 8080;
+PORT = process.env.PORT || 8080;
 //app.listen(port);
 //console.log("port", port)
 (process.env.NOW_REGION) ? module.exports = app : app.listen(PORT);

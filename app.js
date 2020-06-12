@@ -3,9 +3,11 @@ var io = require('socket.io')(app);
 var fs = require('fs');
 
 // HTTP サーバのポートを指定する
-port = process.env.PORT || 8080;
-app.listen(port);
-console.log("port", port)
+//port = process.env.PORT || 8080;
+//app.listen(port);
+//console.log("port", port)
+(process.env.NOW_REGION) ? module.exports = app : app.listen(PORT);
+console.log(`Server running at ${PORT}`);
 
 function handler(req, res) {
 	fs.readFile(__dirname + '/app.html',
